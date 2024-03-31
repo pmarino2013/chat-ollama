@@ -1,5 +1,4 @@
 <script setup>
-// import { Ollama } from "@langchain/community/llms/ollama";
 import { ollama } from "./helpers/ollamaApi.js";
 import { escribirTexto } from "./helpers/funciones";
 import { ref } from "vue";
@@ -8,11 +7,6 @@ const userText = ref("");
 const response = ref("");
 const show = ref(false);
 const isActiveText = ref(false);
-
-// const ollama = new Ollama({
-//   baseUrl: "http://localhost:11434",
-//   model: "llama2",
-// });
 
 const chatResponse = async () => {
   console.log(userText.value);
@@ -27,6 +21,7 @@ const chatResponse = async () => {
   show.value = false;
   isActiveText.value = true;
   console.log(answer);
+  console.log(completo.value);
 };
 </script>
 
@@ -71,6 +66,9 @@ const chatResponse = async () => {
           ></textarea>
         </div>
       </div>
+      <!-- <div v-show="" class="flex justify-end pt-2">
+        <span>Completo!</span>
+      </div> -->
     </form>
   </div>
 </template>
