@@ -1,5 +1,4 @@
 <script setup>
-// import { Ollama } from "@langchain/community/llms/ollama";
 import { ollama } from "./helpers/ollamaApi.js";
 import { escribirTexto } from "./helpers/funciones";
 import { ref } from "vue";
@@ -7,31 +6,34 @@ import { ref } from "vue";
 const userText = ref("");
 const response = ref("");
 const show = ref(false);
+
 const isActiveText = ref(false);
 
-// const ollama = new Ollama({
-//   baseUrl: "http://localhost:11434",
-//   model: "llama2",
-// });
-
 const chatResponse = async () => {
-  console.log(userText.value);
-  console.log(`Escribiendo...`);
   show.value = true;
   isActiveText.value = false;
-
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50);
   show.value = false;
   isActiveText.value = true;
-  console.log(answer);
 };
 </script>
 
 <template>
-  <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div
+    class="bg-gray-100 min-h-screen flex flex-col gap-5 items-center justify-center"
+  >
+    <div class="flex items-center gap-2">
+      <img class="logo" src="./assets/ollama.png" alt="logo llama" />
+      <div>
+        <h1 class="title">Ollama Chat</h1>
+        <div class="flex justify-end">
+          <small>By Pablo Marino</small>
+        </div>
+      </div>
+    </div>
     <form
       @submit.prevent="chatResponse"
       class="max-w-md w-full bg-white p-6 rounded-lg shadow-md"
@@ -72,6 +74,11 @@ const chatResponse = async () => {
         </div>
       </div>
     </form>
+    <div>
+      <a href="https://tecito.app/pmarino" target="_blank"
+        ><small>Invitame un tecito</small></a
+      >
+    </div>
   </div>
 </template>
 
