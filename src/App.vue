@@ -74,6 +74,11 @@ const chatResponse = async () => {
         </div>
       </div>
     </form>
+    <div>
+      <a href="https://tecito.app/pmarino" target="_blank"
+        ><small>Invitame un tecito</small></a
+      >
+    </div>
   </div>
 </template>
 
