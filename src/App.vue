@@ -6,27 +6,34 @@ import { ref } from "vue";
 const userText = ref("");
 const response = ref("");
 const show = ref(false);
+
 const isActiveText = ref(false);
 
 const chatResponse = async () => {
-  console.log(userText.value);
-  console.log(`Escribiendo...`);
   show.value = true;
   isActiveText.value = false;
-
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50);
   show.value = false;
   isActiveText.value = true;
-  console.log(answer);
-  console.log(completo.value);
 };
 </script>
 
 <template>
-  <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div
+    class="bg-gray-100 min-h-screen flex flex-col gap-5 items-center justify-center"
+  >
+    <div class="flex items-center gap-2">
+      <img class="logo" src="./assets/ollama.png" alt="logo llama" />
+      <div>
+        <h1 class="title">Ollama Chat</h1>
+        <div class="flex justify-end">
+          <small>By Pablo Marino</small>
+        </div>
+      </div>
+    </div>
     <form
       @submit.prevent="chatResponse"
       class="max-w-md w-full bg-white p-6 rounded-lg shadow-md"
@@ -66,9 +73,6 @@ const chatResponse = async () => {
           ></textarea>
         </div>
       </div>
-      <!-- <div v-show="" class="flex justify-end pt-2">
-        <span>Completo!</span>
-      </div> -->
     </form>
   </div>
 </template>
