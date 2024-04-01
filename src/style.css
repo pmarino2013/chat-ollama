@@ -33,36 +33,6 @@ textarea {
   bottom: 0;
   right: 0;
   z-index: 99;
-  /* background-color: rgba(0, 0, 0, 0.278); */
-}
-.circle {
-  width: 20px;
-  height: 20px;
-  background-color: #25d366; /* Color similar al de WhatsApp */
-  border-radius: 50%;
-  animation: pulse 1s infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
-}
-
-.texto-animado {
-  animation: desplazamiento 1s infinite alternate;
-}
-
-@keyframes desplazamiento {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-20px);
-  }
 }
 
 /* Define los estilos CSS para los tres círculos */
