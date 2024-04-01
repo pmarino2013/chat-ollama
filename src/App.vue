@@ -7,17 +7,14 @@ const userText = ref("");
 const response = ref("");
 const show = ref(false);
 
-const isActiveText = ref(false);
-
 const chatResponse = async () => {
   show.value = true;
-  isActiveText.value = false;
+  response.value = "";
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50);
   show.value = false;
-  isActiveText.value = true;
 };
 </script>
 
@@ -44,7 +41,6 @@ const chatResponse = async () => {
           type="text"
           placeholder="Escribe tu mensaje..."
           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          :class="isActiveText && ''"
           v-model="userText"
           :disabled="show"
           @focusin="() => (userText = '')"

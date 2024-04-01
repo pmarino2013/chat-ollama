@@ -5,7 +5,6 @@ const escribirTexto = (texto, elemento, tiempo) => {
     index++;
     if (index === texto.length) {
       clearInterval(timer);
-      terminado = true;
     }
   }, tiempo);
 };
