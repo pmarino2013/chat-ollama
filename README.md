@@ -1,7 +1,18 @@
-# Vue 3 + Vite
+# Ollama Chat
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Pequeño chat tipo Q&A similar a chatGPT usando Ollama como herramienta para trabajar con LLM's
 
-## Recommended IDE Setup
+## Instrucciones
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Clonar proyecto
+- Entrar a la carpeta de proyecto y ejecutar `npm install` para descargar las dependencias.
+- Antes de ejecutar el proyecto debe tener corriendo Ollama localmente. Vea https://olama.com para más referencia.
+- Ejecutar proyecto con el comando `npm run dev`
+
+## Tecnologías usadas:
+
+- Tailwind css (https://tailwindcss.com/)
+- Vue3 (https://vuejs.org/)
+- Langchain (https://www.npmjs.com/package/langchain)
+
+By Pablo Marino
