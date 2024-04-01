@@ -1,5 +1,7 @@
 # Ollama Chat
 
+<img src="./public/ollama.png" width="80">
+<br>
 Pequeño chat tipo Q&A similar a chatGPT usando Ollama como herramienta para trabajar con LLM's
 
 ## Instrucciones
