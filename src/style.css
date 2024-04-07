@@ -52,9 +52,15 @@ textarea {
   width: 10px;
   height: 10px;
   margin: 0 5px;
-  background-color: #333;
   border-radius: 50%;
   animation: loading-circles 1s infinite;
+}
+
+.circle-light {
+  background-color: #333;
+}
+.circle-dark {
+  background-color: #f8f8f8;
 }
 
 /* Crea tres círculos */
