@@ -15,7 +15,8 @@ const modeChange = (value) => {
 
 const chatResponse = async () => {
   show.value = true;
-  response.value = "";
+  response.value = "*" + userText.value + "*\n";
+
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
