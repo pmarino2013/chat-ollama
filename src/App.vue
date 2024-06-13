@@ -7,6 +7,7 @@ import BtnDarkMode from "./components/BtnDarkMode.vue";
 const userText = ref("");
 const response = ref("");
 const show = ref(false);
+const isDisabledUserText = ref(false);
 const darkMode = ref(false);
 
 const modeChange = (value) => {
@@ -15,13 +16,12 @@ const modeChange = (value) => {
 
 const chatResponse = async () => {
   show.value = true;
-  response.value = "*" + userText.value + "*\n";
+  isDisabledUserText.value = true;
 
   const answer = await ollama._call(
-    `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
+    `responder el siguiente mensaje:${userText.value}. Hacerlo en español argentino.`
   );
-  escribirTexto(answer.trim(), response, 50);
-
+  escribirTexto(answer.trim(), response, 50, isDisabledUserText);
   show.value = false;
 };
 </script>
@@ -60,7 +60,7 @@ const chatResponse = async () => {
           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           :class="darkMode ? 'text-slate-100 bg-slate-700' : 'text-slate-600'"
           v-model="userText"
-          :disabled="show"
+          :disabled="isDisabledUserText"
           @focusin="() => (userText = '')"
         />
       </div>
@@ -97,7 +97,7 @@ const chatResponse = async () => {
             rows="8"
             id="content-text-ollama"
             placeholder="Respuesta..."
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            class="scrollbar-custom w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             :class="darkMode ? 'text-slate-100 bg-slate-700' : 'text-slate-600'"
             v-model="response"
             readonly
@@ -119,5 +119,23 @@ const chatResponse = async () => {
 <style scoped>
 #content-text-ollama {
   scroll-behavior: smooth;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 12px; /* ancho de la barra de desplazamiento */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color del fondo de la pista */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  cursor: default;
+  background: #888; /* color del pulgar de la barra de desplazamiento */
+  border-radius: 6px; /* borde redondeado del pulgar */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color del pulgar al pasar el ratón por encima */
 }
 </style>

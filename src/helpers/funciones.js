@@ -1,4 +1,4 @@
-const escribirTexto = (texto, elemento, tiempo) => {
+const escribirTexto = (texto, elemento, tiempo, activador) => {
   let index = 0;
   const timer = setInterval(() => {
     elemento.value += texto[index];
@@ -7,6 +7,7 @@ const escribirTexto = (texto, elemento, tiempo) => {
     index++;
     if (index === texto.length) {
       clearInterval(timer);
+      activador.value = false;
     }
   }, tiempo);
 };
