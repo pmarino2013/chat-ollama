@@ -20,6 +20,7 @@ const chatResponse = async () => {
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50);
+
   show.value = false;
 };
 </script>
@@ -93,6 +94,7 @@ const chatResponse = async () => {
           <img class="user" src="./assets/ollama.png" alt="ollama" />
           <textarea
             rows="8"
+            id="content-text-ollama"
             placeholder="Respuesta..."
             class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             :class="darkMode ? 'text-slate-100 bg-slate-700' : 'text-slate-600'"
@@ -113,4 +115,8 @@ const chatResponse = async () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#content-text-ollama {
+  scroll-behavior: smooth;
+}
+</style>
