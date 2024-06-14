@@ -9,6 +9,7 @@ const response = ref("");
 const show = ref(false);
 const isDisabledUserText = ref(false);
 const darkMode = ref(false);
+const messageCopy = ref(false);
 
 const modeChange = (value) => {
   darkMode.value = value;
@@ -18,11 +19,20 @@ const chatResponse = async () => {
   show.value = true;
   response.value = "";
   isDisabledUserText.value = true;
+
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50, isDisabledUserText);
   show.value = false;
+};
+
+const portapapeles = () => {
+  copyText(response.value);
+  messageCopy.value = true;
+  setTimeout(() => {
+    messageCopy.value = false;
+  }, 2000);
 };
 </script>
 
@@ -104,6 +114,7 @@ const chatResponse = async () => {
           ></textarea>
         </div>
       </div>
+
       <div
         v-show="response && !isDisabledUserText"
         class="flex justify-end mt-2"
@@ -111,9 +122,17 @@ const chatResponse = async () => {
         <i
           class="fa fa-clipboard cursor-pointer"
           aria-hidden="true"
-          @click="copyText(response)"
+          @click="portapapeles"
         ></i>
       </div>
+      <Transition>
+        <div
+          v-if="messageCopy"
+          class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-center py-2 px-4 rounded"
+        >
+          ¡Texto copiado al portapapeles!
+        </div>
+      </Transition>
     </form>
     <div>
       <a
@@ -147,5 +166,14 @@ const chatResponse = async () => {
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background: #555; /* color del pulgar al pasar el ratón por encima */
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
