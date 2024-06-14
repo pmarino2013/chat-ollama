@@ -12,4 +12,15 @@ const escribirTexto = (texto, elemento, tiempo, activador) => {
   }, tiempo);
 };
 
-export { escribirTexto };
+const copyText = (texto) => {
+  navigator.clipboard
+    .writeText(texto)
+    .then(() => {
+      alert("Texto copiado al portapapeles");
+    })
+    .catch((err) => {
+      console.error("Error al copiar el texto: ", err);
+    });
+};
+
+export { escribirTexto, copyText };

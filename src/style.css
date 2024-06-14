@@ -19,8 +19,12 @@
 .user {
   width: 50px;
   height: 50px;
-  border: 2px solid #363636;
+  border: 2px solid rgb(229, 231, 235);
   border-radius: 50%;
+}
+
+form {
+  min-height: 348px;
 }
 
 textarea {

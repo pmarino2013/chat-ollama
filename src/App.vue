@@ -1,6 +1,6 @@
 <script setup>
 import { ollama } from "./helpers/ollamaApi.js";
-import { escribirTexto } from "./helpers/funciones";
+import { escribirTexto, copyText } from "./helpers/funciones";
 import { ref } from "vue";
 import BtnDarkMode from "./components/BtnDarkMode.vue";
 
@@ -16,10 +16,10 @@ const modeChange = (value) => {
 
 const chatResponse = async () => {
   show.value = true;
+  response.value = "";
   isDisabledUserText.value = true;
-
   const answer = await ollama._call(
-    `responder el siguiente mensaje:${userText.value}. Hacerlo en español argentino.`
+    `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
   escribirTexto(answer.trim(), response, 50, isDisabledUserText);
   show.value = false;
@@ -103,6 +103,16 @@ const chatResponse = async () => {
             readonly
           ></textarea>
         </div>
+      </div>
+      <div
+        v-show="response && !isDisabledUserText"
+        class="flex justify-end mt-2"
+      >
+        <i
+          class="fa fa-clipboard cursor-pointer"
+          aria-hidden="true"
+          @click="copyText(response)"
+        ></i>
       </div>
     </form>
     <div>
