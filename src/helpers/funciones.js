@@ -23,4 +23,19 @@ const copyText = (texto) => {
     });
 };
 
-export { escribirTexto, copyText };
+const speechText = (text) => {
+  if ("speechSynthesis" in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Puedes configurar más propiedades del utterance, como el idioma, la voz, el tono y la velocidad
+    utterance.lang = "es-AR"; // Configura el idioma a español
+    utterance.pitch = 1; // Rango de 0 a 2
+    utterance.rate = 1; // Rango de 0.1 a 10
+
+    // Inicia la síntesis de voz
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("Lo siento, tu navegador no soporta la síntesis de voz.");
+  }
+};
+
+export { escribirTexto, copyText, speechText };

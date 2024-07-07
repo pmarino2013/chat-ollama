@@ -1,6 +1,6 @@
 <script setup>
 import { ollama } from "./helpers/ollamaApi.js";
-import { escribirTexto, copyText } from "./helpers/funciones";
+import { escribirTexto, copyText, speechText } from "./helpers/funciones";
 import { ref } from "vue";
 import BtnDarkMode from "./components/BtnDarkMode.vue";
 
@@ -23,6 +23,7 @@ const chatResponse = async () => {
   const answer = await ollama._call(
     `responder el siguiente mensaje:${userText.value}. Hacerlo en español.`
   );
+  speechText(answer);
   escribirTexto(answer.trim(), response, 50, isDisabledUserText);
   show.value = false;
 };
