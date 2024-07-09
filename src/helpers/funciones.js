@@ -25,14 +25,14 @@ const copyText = (texto) => {
 
 const speechText = (text) => {
   if ("speechSynthesis" in window) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    // Puedes configurar más propiedades del utterance, como el idioma, la voz, el tono y la velocidad
-    utterance.lang = "es-AR"; // Configura el idioma a español
-    utterance.pitch = 1; // Rango de 0 a 2
-    utterance.rate = 1; // Rango de 0.1 a 10
+    const readText = new SpeechSynthesisUtterance(text);
+    // Podés configurar más propiedades del readText, como el idioma, la voz, el tono y la velocidad
+    readText.lang = "es-AR"; // Configura el idioma a español Argentino
+    readText.pitch = 1; // El tono - Rango de 0 a 2
+    readText.rate = 1; // Velocidad - Rango de 0.1 a 10
 
     // Inicia la síntesis de voz
-    window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.speak(readText);
   } else {
     alert("Lo siento, tu navegador no soporta la síntesis de voz.");
   }
